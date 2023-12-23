@@ -3,13 +3,15 @@ pipeline {
     triggers {
         cron('H */4 * * 1-5')
     }
-
+    environment {
+        ENV_FILE = credentials('pipeline')
+    }
     stages {
         stage('Set up env') {
             steps {
                 script {
                     sh 'python3 -m pip install --upgrade pip'
-                    sh 'pip3 install -r requirements.txt'
+                    sh 'pip3 install -r requirement.txt'
                 }
             }
         }
